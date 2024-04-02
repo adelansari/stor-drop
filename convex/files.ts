@@ -1,6 +1,6 @@
 
 import { v } from 'convex/values'
-import { mutation } from './_generated/server'
+import { mutation, query } from './_generated/server'
 
 export const createFile = mutation({
     args: {
@@ -11,4 +11,11 @@ export const createFile = mutation({
             name: args.name,
         })
     },
+})
+
+export const getFiles = query({
+    args: {},
+    async handler(ctx, args) {
+        return ctx.db.query('files').collect()
+    }
 })
